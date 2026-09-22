@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Organize comprovantes e acompanhe seus gastos em um resumo simples.">
+    <title>Clareza | Coletor de comprovantes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="shell">
+        <section class="hero" aria-labelledby="page-title">
+            <div>
+                <p class="eyebrow">Clareza financeira</p>
+                <h1 id="page-title">Seus gastos, sem achismo.</h1>
+                <p class="hero-copy">Guarde os comprovantes do dia e transforme pequenas despesas em uma visão clara do seu mês.</p>
+            </div>
+            <div class="hero-mark" aria-hidden="true">R$</div>
+        </section>
+
+        <div class="content-grid">
+            <section class="panel collector-panel" aria-labelledby="collector-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">Novo registro</p>
+                        <h2 id="collector-title">Adicionar comprovante</h2>
+                    </div>
+                    <span class="step-badge">01</span>
+                </div>
+
+                <form id="receipt-form">
+                    <div class="upload-area" id="upload-area">
+                        <input type="file" id="receipt-file" accept="image/jpeg,image/png,image/webp" hidden>
+                        <div class="upload-placeholder" id="upload-placeholder">
+                            <span class="upload-symbol" aria-hidden="true">↥</span>
+                            <strong>Solte o comprovante aqui</strong>
+                            <span>ou clique para procurar no dispositivo</span>
+                            <small>JPG, PNG ou WEBP · até 5 MB</small>
+                        </div>
+                        <div class="file-preview" id="file-preview" hidden>
+                            <img id="preview-image" alt="Pré-visualização do comprovante">
+                            <div class="preview-info">
+                                <strong id="file-name"></strong>
+                                <button type="button" class="text-button" id="remove-file">Remover</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="field-message" id="file-message" role="alert"></p>
+
+                    <div class="form-fields">
+                        <label class="field field-wide">
+                            <span>O que você comprou?</span>
+                            <input type="text" id="description" placeholder="Ex.: mercado da semana" required maxlength="80">
+                        </label>
+                        <label class="field">
+                            <span>Valor</span>
+                            <div class="input-prefix"><span>R$</span><input type="number" id="amount" min="0.01" step="0.01" placeholder="0,00" required></div>
+                        </label>
+                        <label class="field">
+                            <span>Categoria</span>
+                            <select id="category" required>
+                                <option value="">Selecionar</option>
+                                <option>Alimentação</option>
+                                <option>Transporte</option>
+                                <option>Casa</option>
+                                <option>Saúde</option>
+                                <option>Lazer</option>
+                                <option>Outros</option>
+                            </select>
+                        </label>
+                        <label class="field field-wide">
+                            <span>Data da compra</span>
+                            <input type="date" id="purchase-date" required>
+                        </label>
+                    </div>
+                    <button class="primary-button" type="submit"><span aria-hidden="true">+</span> Adicionar ao resumo</button>
+                    <p class="form-status" id="form-status" role="status"></p>
+                </form>
+            </section>
+
+            <section class="panel summary-panel" aria-labelledby="summary-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">Visão geral</p>
+                        <h2 id="summary-title">Resumo dos gastos</h2>
+                    </div>
+                    <span class="receipt-count" id="receipt-count">0 itens</span>
+                </div>
+
+                <div class="total-block">
+                    <span>Total registrado</span>
+                    <strong id="total-amount">R$ 0,00</strong>
+                    <span class="total-note" id="total-note">Adicione seu primeiro comprovante</span>
+                </div>
+
+                <div class="category-block">
+                    <div class="subheading"><h3>Por categoria</h3><span id="category-count">0 categorias</span></div>
+                    <div class="category-list" id="category-list">
+                        <p class="empty-state">Seu resumo por categoria aparecerá aqui.</p>
+                    </div>
+                </div>
+
+                <div class="records-block">
+                    <div class="subheading"><h3>Comprovantes recentes</h3><button type="button" class="text-button" id="clear-receipts" hidden>Limpar tudo</button></div>
+                    <div class="receipt-list" id="receipt-list">
+                        <p class="empty-state">Nenhum comprovante registrado ainda.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="script.js" defer></script>
+</body>
+</html>
